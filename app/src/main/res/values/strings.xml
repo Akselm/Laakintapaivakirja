@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Laakintapaivakirja</string>
     <string name="title_home">Muistutus Lääkkeistä</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Profile</string>
     <string name="title_notifications">Notifications</string>
+    <string name="age">Age:</string>
+    <string name="name">Name:</string>
+    <string name="SetNameAndAge">TextView</string>
+    <string name="profile_information">Profile information:</string>
+    <string name="todo_profile">TODO</string>
+    <string name="user_profile">User profile</string>
 </resources>

@@ -29,6 +29,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:text="@string/name"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
@@ -42,6 +43,7 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:text="@string/age"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/buttonOK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
