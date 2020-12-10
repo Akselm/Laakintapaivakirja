@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAge"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintVertical_bias="0.348" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -30,6 +30,7 @@
         android:inputType="textPersonName"
         android:text="@string/name"
         android:textColor="@color/black"
+        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
@@ -44,6 +45,7 @@
         android:inputType="number"
         android:text="@string/age"
         android:textColor="@color/black"
+        android:hint="@string/age"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
