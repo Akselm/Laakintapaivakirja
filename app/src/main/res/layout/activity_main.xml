@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:drawable/list_selector_background">
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -19,17 +20,21 @@
 
     <Button
         android:id="@+id/buttonProfile"
-        android:layout_width="96dp"
-        android:layout_height="54dp"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
         android:layout_marginTop="624dp"
         android:layout_marginBottom="53dp"
+        android:background="@drawable/profile"
+        android:foreground="@drawable/profile"
+        android:foregroundTint="#000000"
         android:onClick="buttonPressed"
         android:text="Profile"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
