@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Laakintapaivakirja</string>
-    <string name="title_home">Home</string>
     <string name="age">Ikä:</string>
     <string name="name">Nimi:</string>
     <string name="SetNameAndAge">TextView</string>
