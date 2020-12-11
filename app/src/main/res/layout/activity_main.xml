@@ -30,16 +30,15 @@
         android:layout_toStartOf="@+id/button12"
         android:background="@drawable/profile"
         android:foreground="@drawable/profile"
-        android:onClick="buttonPressed"
-        android:text="Profiili" />
+        android:onClick="buttonPressed" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="140dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="59dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="99dp"
         android:layout_marginEnd="5dp"
         android:layout_toStartOf="@+id/button12"

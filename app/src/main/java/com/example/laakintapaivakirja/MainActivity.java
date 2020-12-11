@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Profiiliaktiviteetissa tallennettu nimi tulee näkyviin.
+        //Profiiliaktiviteetissa tallennettu nimi ja ikä tulee näkyviin.
         Intent intent = getIntent();
         String message = intent.getStringExtra(Profile.EXTRA_MESSAGE);
         textView = findViewById(R.id.textView);
@@ -57,9 +58,18 @@ public class MainActivity extends AppCompatActivity {
         ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.adapter_view_layout, ReminderList.getInstance().getReminders());
         reminderview.setAdapter(adapter);
 
-        //KOMENNTTIA TARVITAAN!
+        //Profiiliaktiviteetissa määritelty nimi ja ikä tallennetaan, jos ei anneta mitään, ei tulosteta tietoja.
         SharedPreferences prefGet = getSharedPreferences(shredPreferencesName, Context.MODE_PRIVATE);
         textView.setText(prefGet.getString(messageKey,""));
+
+        reminderview.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Lähettää ReminderListille solun poistopyynnön klikattaessa.
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ReminderList.getInstance().removeReminder(i);
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**

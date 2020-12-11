@@ -8,11 +8,11 @@ import android.os.Bundle;
  * @author Aksel Manns
  * @version 11/12/2020
  */
-public class Adapter_view_layout extends AppCompatActivity {
+/*public class Adapter_view_layout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adapter_view_layout);
     }
-}
+}*/

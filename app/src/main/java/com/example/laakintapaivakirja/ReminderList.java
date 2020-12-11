@@ -39,4 +39,12 @@ public class ReminderList { //Luo instanssin tästä luokasta, jotta muulla kood
 
         return reminders;
     }
+
+    /**
+     * Poistaa listviewistä klikatun solun.
+     * @param i solun paikka, indexi.
+     */
+    public void removeReminder(int i) {
+        reminders.remove(i);
+    }
 }
