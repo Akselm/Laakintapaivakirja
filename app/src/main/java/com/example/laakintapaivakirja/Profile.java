@@ -15,7 +15,7 @@ import android.widget.TextView;
 /**
  * Luokka sisältää käyttäjäprofiilin tarvitsemia tietoja.
  * @author Suvi Laakkonen
- * @version 10/12/2020
+ * @version 11/12/2020
  */
 
 public class Profile extends AppCompatActivity {

@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Laakintapaivakirja">
         <activity android:name=".adapter_view_layout"></activity>
         <activity
-            android:name=".RemainderActivity"
+            android:name=".ReminderActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".Profile"

@@ -3,8 +3,12 @@ package com.example.laakintapaivakirja;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-public class adapter_view_layout extends AppCompatActivity {
+/**
+ * Toistaiseksi käyttämätön luokka, jolle voi lisätä listviewin soluihin liittyvää toiminnallisuutta.
+ * @author Aksel Manns
+ * @version 11/12/2020
+ */
+public class Adapter_view_layout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

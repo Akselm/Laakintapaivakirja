@@ -15,8 +15,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Pääluokka, joka vastaa Main Activity Layoutin toiminnasta.
+ * @author Suvi Laakkonen, Aksel Manns
+ * @version 11/12/2020
+ */
 public class MainActivity extends AppCompatActivity {
-
+    //Muuttujien määrittely.
     private TextView tvShowNameAndAge;
     private TextView textView;
     private final String shredPreferencesName = "MessageStore";
@@ -25,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button; //Button variable
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //Aktiviteetin luonnin aikana tapahtuvaa androidin perussäätöä.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -35,39 +40,34 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView.setText(message);
 
-        ListView mListView = (ListView) findViewById(R.id.reminder_listview);
+        ListView reminderview = (ListView) findViewById(R.id.reminder_listview); //Etsitään listview ja tehdään siitä muuttuja.
+        button = (Button) findViewById(R.id.button); //Etsitään nappi ja tehdään siitä muuttuja.
 
-        button = (Button) findViewById(R.id.button); //Etsitään ui tekstikentät/napit ja tehdään niistä variableja
-        button.setOnClickListener(new View.OnClickListener() { //Klikkauksella nappi kutsuu uuden aktiviteetin avaamisen
+        button.setOnClickListener(new View.OnClickListener() { //Klikkauksella nappi kutsuu uuden aktiviteetin avaamisen.
+            /**
+             * Napin painamisen funktio, joka avaa RemainderActivityn.
+              * @param view Tämä luokka edustaa perustaa, jolle ui-komponentit luodaan.
+             */
             public void onClick(View view) {
-                OpenRemainderActivity();
+                OpenReminderActivity();
             }
         });
 
-        Reminder reminder1 = new Reminder("he", "jgh");
-        ArrayList<Reminder> reminders = new ArrayList<>();
-        //reminders.add(reminder1);
+        //Luo listviewta varten kustomoidun adapterin, joka liittää dataa ReminderList -luokan listalta näkymään.
+        ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.adapter_view_layout, ReminderList.getInstance().getReminders());
+        reminderview.setAdapter(adapter);
 
-        Reminder reminder = (Reminder) getIntent().getSerializableExtra("NAME");
-        int condition = getIntent().getIntExtra("method", 0);
-
-        while(condition==1)
-        {
-            reminders.add(reminder);
-            condition = 0;
-            Log.i("abcd", "" + condition);
-        }
-
-        ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.adapter_view_layout, reminders);
-        mListView.setAdapter(adapter);
-
+        //KOMENNTTIA TARVITAAN!
         SharedPreferences prefGet = getSharedPreferences(shredPreferencesName, Context.MODE_PRIVATE);
         textView.setText(prefGet.getString(messageKey,""));
     }
 
-    public void OpenRemainderActivity(){ //Uusi aktiviteetti avautuu, kun kutsu käy
-        Intent intent2 = new Intent(this, RemainderActivity.class);
-        startActivity(intent2);
+    /**
+     * RemainderActivity avautuu, jossa käyttäjä voi luoda muistutuksia.
+     */
+    public void OpenReminderActivity(){
+        Intent intent = new Intent(this, ReminderActivity.class);
+        startActivity(intent);
 
     }
 
