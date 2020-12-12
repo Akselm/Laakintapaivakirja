@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--@author Aksel Manns -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RemainderActivity">
+    tools:context=".ReminderActivity">
 
     <EditText
         android:id="@+id/medicine_name"
@@ -46,8 +47,8 @@
 
     <RadioGroup
         android:id="@+id/medicine_button_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="417dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="225dp"
         android:checkedButton="@id/radioButton"
         android:orientation="horizontal"
@@ -63,15 +64,17 @@
             android:layout_marginEnd="24dp"
             android:layout_weight="33.3"
             android:text="Ravintolisä"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="28dp"
             android:layout_weight="33.3"
             android:text="Itsehoitolääke"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioButton" />
 
@@ -82,6 +85,7 @@
             android:layout_marginEnd="24dp"
             android:layout_weight="33.3"
             android:text="Reseptilääke"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
     </RadioGroup>

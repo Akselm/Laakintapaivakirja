@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
+
 /**
  * Mukautettu adapteri listviewin tarpeisiin.
  * @author Aksel Manns

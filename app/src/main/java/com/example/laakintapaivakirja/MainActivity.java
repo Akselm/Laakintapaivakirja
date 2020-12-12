@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
 /**
  * Pääluokka, joka vastaa Main Activity Layoutin toiminnasta.
@@ -23,7 +21,6 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity {
     //Muuttujien määrittely.
-    private TextView tvShowNameAndAge;
     private TextView textView;
     private final String shredPreferencesName = "MessageStore";
     private final String messageKey = "LastValue";

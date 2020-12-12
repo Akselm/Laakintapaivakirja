@@ -1,7 +1,7 @@
 <resources>
+    <!--@author Suvi Laakkonen -->
     <string name="app_name">Laakintapaivakirja</string>
     <string name="age">Ikä:</string>
-    <string name="title_home"></string>
     <string name="name">Nimi:</string>
     <string name="SetNameAndAge">TextView</string>
     <string name="profile_information">Profiilin tiedot:</string>

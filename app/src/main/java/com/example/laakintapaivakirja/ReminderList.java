@@ -18,7 +18,6 @@ public class ReminderList { //Luo instanssin tästä luokasta, jotta muulla kood
      */
     public ReminderList() {
         reminders = new ArrayList<Reminder>();
-
     }
 
     /**
