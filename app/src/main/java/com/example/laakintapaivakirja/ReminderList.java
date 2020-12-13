@@ -1,6 +1,10 @@
 package com.example.laakintapaivakirja;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Luokka, joka kerää muistutuksia listaan sitä mukaan, kun niitä luodaan.
  * @author Aksel Manns
@@ -26,8 +30,8 @@ public class ReminderList { //Luo instanssin tästä luokasta, jotta muulla kood
      * @param time Käyttäjän määrittämä ottamisajankohta lääkkeelle.
      * @param type Käyttäjän määrittämä tyyppi lääkkeelle.
      */
-    public void addReminder(String name, String time, String type, String date) {
-        reminders.add(new Reminder(name, time, type, date));
+    public void addReminder(String name, String time, String type, String date, int typeindex) {
+        reminders.add(new Reminder(name, time, type, date, typeindex));
     }
 
     /**
@@ -45,5 +49,13 @@ public class ReminderList { //Luo instanssin tästä luokasta, jotta muulla kood
      */
     public void removeReminder(int i) {
         reminders.remove(i);
+    }
+
+    /**
+     * Päivittää listan muistiin tallennetuilla tiedoilla.
+     * @param savedrem Muistista haettu tallennettu lista.
+     */
+    public void updateReminders(ArrayList savedrem) {
+        this.reminders = savedrem;
     }
 }

@@ -2,13 +2,18 @@ package com.example.laakintapaivakirja;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 
 /**
@@ -20,6 +25,9 @@ public class ReminderActivity extends AppCompatActivity {
     //Muuttujien määrittely.
     private Button button2;
     RadioGroup mg;
+    private final String shredPreferencesName = "MessageStore";
+    private final String reminderKey = "ReminderValue";
+    int typeindex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Aktiviteetin luonnin aikana tapahtuvaa androidin perussäätöä.
@@ -44,7 +52,21 @@ public class ReminderActivity extends AppCompatActivity {
                 String date = da.getText().toString();
                 String type = ((RadioButton)findViewById(mg.getCheckedRadioButtonId())).getText().toString();
 
-                ReminderList.getInstance().addReminder(medicinename, time, type, date); //Kutsuu ReminderListiä luomaan uuden muistutuksen listalle käyttäjältä saaduilla arvoilla.
+                if(((RadioButton)findViewById(mg.getCheckedRadioButtonId())).getText().equals("Ravintolisä")){ //Katsotaan valittu lääketyyppi ja annetaan sen perusteella luku talteen.
+                    typeindex = 1;
+                }else if(((RadioButton)findViewById(mg.getCheckedRadioButtonId())).getText().equals("Itsehoitolääke")){
+                    typeindex = 2;
+                }else if(((RadioButton)findViewById(mg.getCheckedRadioButtonId())).getText().equals("Reseptilääke")){
+                    typeindex = 3; }
+
+                ReminderList.getInstance().addReminder(medicinename, time, type, date, typeindex); //Kutsuu ReminderListiä luomaan uuden muistutuksen listalle käyttäjältä saaduilla arvoilla.
+
+                SharedPreferences prefPut = getSharedPreferences(shredPreferencesName, Activity.MODE_PRIVATE); //Tallentaa listan tilan Gsonilla.
+                SharedPreferences.Editor prefEditor = prefPut.edit();
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(ReminderList.getInstance().getReminders());
+                prefEditor.putString(reminderKey, jsonString);
+                prefEditor.commit();
 
                 Intent intent = new Intent(view.getContext(), MainActivity.class); //Luo uuden intentin, joka palauttaa käyttäjän Main Activityyn ja sulkee RemainderActivityn.
                 startActivity(intent);
@@ -53,5 +75,3 @@ public class ReminderActivity extends AppCompatActivity {
         });
     }
 }
-
-

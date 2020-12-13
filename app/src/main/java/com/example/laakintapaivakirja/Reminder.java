@@ -12,6 +12,7 @@ public class Reminder implements Serializable {
     private String time;
     private String type;
     private String date;
+    private int typeindex;
 
     /**
      * Luokan syntyessä sen muuttujien arvot liitetään käyttäjän syöttämän tiedon pohjalta.
@@ -19,11 +20,12 @@ public class Reminder implements Serializable {
      * @param time Lääkkeen ottamisajankohta.
      * @param type Lääkkeen tyyppi.
      */
-    public Reminder(String name, String time, String type, String date) {
+    public Reminder(String name, String time, String type, String date, int typeindex) {
         this.name = name;
         this.time = time;
         this.type = type;
         this.date = date;
+        this.typeindex = typeindex;
     }
 
     /**
@@ -55,5 +57,13 @@ public class Reminder implements Serializable {
      */
     public String getDate() {
         return date;
+    }
+
+    /**
+     * Palauttaa lääkkeen tyyppi-indexin tästä muistutuksesta.
+     * @return Palautettu arvo.
+     */
+    public int getTypeIndex() {
+        return typeindex;
     }
 }

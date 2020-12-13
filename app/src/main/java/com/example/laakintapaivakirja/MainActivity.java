@@ -7,11 +7,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 
 /**
@@ -24,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private final String shredPreferencesName = "MessageStore";
     private final String messageKey = "LastValue";
+    private final String reminderKey = "ReminderValue";
     public static final String EXTRA = "com.example.laakintapaivakirja";
     private Button button; //Button variable
 
@@ -51,19 +64,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Luo listviewta varten kustomoidun adapterin, joka liittää dataa ReminderList -luokan listalta näkymään.
-        ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.adapter_view_layout, ReminderList.getInstance().getReminders());
-        reminderview.setAdapter(adapter);
-
         //Profiiliaktiviteetissa määritelty nimi ja ikä tallennetaan, jos ei anneta mitään, ei tulosteta tietoja.
         SharedPreferences prefGet = getSharedPreferences(shredPreferencesName, Context.MODE_PRIVATE);
         textView.setText(prefGet.getString(messageKey,""));
 
+        //Hakee tallennetut muistutukset Gsonilla ja pyytää listaa päivittämään ne näkymään.
+        String jsonString = prefGet.getString(reminderKey, "");
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Reminder>>() {}.getType();
+        ArrayList<Reminder> reminders = gson.fromJson(jsonString, type);
+        ReminderList.getInstance().updateReminders(reminders);
+
+        //Luo listviewta varten kustomoidun adapterin, joka liittää dataa ReminderList -luokan listalta näkymään.
+        ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.adapter_view_layout, ReminderList.getInstance().getReminders());
+        reminderview.setAdapter(adapter);
+
+
         reminderview.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Lähettää ReminderListille solun poistopyynnön klikattaessa.
             @Override
+            /**
+             * Listan solua painamalla adapteri hakee painetun solun indexin, jota tarvitaan solun poistopyynnössä.
+             * @param i on ainoa tarvittava parametri, joka kertoo, mitä soluista painetaan.
+             */
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ReminderList.getInstance().removeReminder(i);
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
+
+                SharedPreferences prefPut = getSharedPreferences(shredPreferencesName, Activity.MODE_PRIVATE); //Tallentaa listan tilan Gsonilla.
+                SharedPreferences.Editor prefEditor = prefPut.edit();
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(ReminderList.getInstance().getReminders());
+                prefEditor.putString(reminderKey, jsonString);
+                prefEditor.commit();
+
+                Intent intent = new Intent(view.getContext(), MainActivity.class); //Päivittää MainActivityn.
                 startActivity(intent);
             }
         });
@@ -73,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
      * RemainderActivity avautuu, jossa käyttäjä voi luoda muistutuksia.
      */
     public void OpenReminderActivity(){
+
         Intent intent = new Intent(this, ReminderActivity.class);
         startActivity(intent);
 
@@ -99,7 +133,5 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor prefEditor = prefPut.edit();
 
         prefEditor.putString(messageKey, textView.getText().toString());
-        prefEditor.commit();
     }
 }
-
